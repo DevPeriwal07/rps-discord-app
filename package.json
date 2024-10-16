@@ -1,0 +1,29 @@
+{
+  "name": "rps-discord-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A RPS game made by following getting started on discord's",
+  "main": "./src/index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "scripts": {
+    "start": "node ./src/index.js",
+    "register": "node ./src/commands.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "keywords": [
+    "discord-app"
+  ],
+  "author": "DevPeriwal07",
+  "license": "MIT",
+  "dependencies": {
+    "discord-interactions": "^4.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
