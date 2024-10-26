@@ -1,7 +1,7 @@
 {
   "name": "rps-discord-app",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A RPS game made by following getting started on discord's",
   "main": "./src/index.js",
   "type": "module",
