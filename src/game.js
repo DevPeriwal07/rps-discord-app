@@ -33,30 +33,36 @@ export function getRPSChoices() {
 }
 
 export function getRPSOptions() {
-  const allChoices = getRPSChoices()
-  const options = []
+  const allChoices = getRPSChoices();
+  const options = [];
 
   for (let c of allChoices) {
     options.push({
       label: c.charAt(0).toUpperCase() + c.slice(1),
       value: c.toLowerCase(),
-      description: RPSChoices[c]['description']
-    })
+      description: RPSChoices[c].description,
+      emoji: {
+        name: RPSChoices[c].emoji,
+      },
+    });
   }
 
-  return options
+  return options;
 }
 
 const RPSChoices = {
   rock: {
+    emoji: '🪨',
     description: 'sedimentary, igneous, or perhaps even metamorphic',
     scissors: 'smashes',
   },
   paper: {
+    emoji: '📃',
     description: 'versatile and iconic',
     rock: 'covers',
   },
   scissors: {
+    emoji: '✂️',
     description: 'careful ! sharp ! edges !!',
     paper: 'cuts',
   },
