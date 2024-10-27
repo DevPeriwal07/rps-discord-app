@@ -40,6 +40,21 @@ const commands = [
     integration_types: [0, 1],
     contexts: [0, 2],
   },
+  {
+    name: 'profile',
+    description: 'Check your profile',
+    type: 1,
+    options: [
+      {
+        name: 'user',
+        description: 'The user whose profile you want to see.',
+        type: 6,
+        required: false,
+      },
+    ],
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+  },
 ];
 
 InstallCommands(process.env.APP_ID, commands);
