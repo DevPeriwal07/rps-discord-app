@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import { verifyKeyMiddleware } from 'discord-interactions';
 import { getResult, getRPSOptions } from './game.js';
-import { DiscordRequest } from './utils.js';
+import { DiscordRequest, formatProfile, getProfile } from './utils.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -62,6 +62,31 @@ app.post(
             ],
           },
         });
+      } else if (name === 'profile') {
+        const context = req.body.context
+        let user = context === 0 ? req.body.member.user : req.body.user;
+        let option = data?.options?.[0]?.value
+
+        if (option) {
+          user = data.resolved.users[option]
+        }
+
+        const userProfile = await getProfile(user.id)
+
+        if (!userProfile) {
+          return res.send({
+            type: 4,
+            data: {
+              content: 'That user has not played a single game yet.',
+              flags: 64
+            }
+          })
+        }
+
+        return res.send({
+          type: 4,
+          data: formatProfile(user, userProfile)
+        })
       }
     }
 
@@ -99,7 +124,7 @@ app.post(
             context === 0 ? req.body.member.user.id : req.body.user.id;
           const object = data.values[0];
 
-          const resultStr = getResult(activeGames[gameId], {
+          const resultStr = await getResult(activeGames[gameId], {
             id: userId,
             object,
           });
